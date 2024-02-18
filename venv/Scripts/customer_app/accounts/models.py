@@ -37,8 +37,9 @@ class Orders(models.Model):
     STATUS = (('Pending',"Pending"),
               ("Out for Delivery","Out For Delivery")
               ,("Delivered", "Delivered"))
-    customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, null=True, blank=True)
-    product = models.ForeignKey(Product,on_delete=models.SET_NULL, null=True, blank=True) 
+    customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, null=True, blank=True,related_name='customer_profile')
+    product = models.ForeignKey(Product,on_delete=models.SET_NULL, null=True, blank=True,related_name='products') 
     created_at = models.DateField(auto_now_add=True,null=True)    
     status = models.CharField(max_length=20, choices=STATUS, default='Pending')
-    
+    def __str__(self) -> str:
+        return self.customer.name

@@ -17,18 +17,24 @@
       <tr>
         
         <th scope="col">customer</th>
-        <th scope="col">Orders</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Details</th>
+
         
       </tr>
     </thead>
     <tbody>
+      {% for i in customers %} Details
       <tr>
     
-        <td>Mark</td>
-        <td>Otto</td>
+        <td>{{i.name}}</td>
+        <td>{{i.phone}}</td>
+        <td><a href="{% url 'customer' i.id %}">
+          <button class="btn btn-success ms-1 my-2" type="button">View</button>
+        </a></button></td>
        
       </tr>
-      
+      {% endfor %}
       
     </tbody>
   </table>
@@ -51,16 +57,17 @@
       </tr>
     </thead>
     <tbody>
+      {% for i in orders %}
       <tr>
     
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Mark</td>
+        <td>{{i.product}}</td>
+        <td>{{i.created_at}}</td>
+        <td>{{i.status}}</td>
+        <td><button type="button" class="btn btn-primary"><a href"">Update</a></button></td>
+        <td><button type="button" class="btn btn-danger">Delete<a href=""></a></button></td>
        
       </tr>
-      
+      {% endfor %}
       
     </tbody>
   </table>
