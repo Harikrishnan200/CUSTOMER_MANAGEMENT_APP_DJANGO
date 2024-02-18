@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Product,Customer,Orders
+from .forms import OrderForm
 
 
 # Create your views here.
@@ -8,9 +9,10 @@ from .models import Product,Customer,Orders
 def customer(request,pk):
     customer = Customer.objects.get(id=pk)
     total_orders = Orders.objects.filter(customer=customer).count()
-    items = Product.objects.filter(customer=customer).order_by('-date') # get the last
+    items = Orders.objects.filter(customer=customer).order_by('-created_at') 
     context = {'customer':customer,
-               'total_orders':total_orders
+               'total_orders':total_orders,
+               'items':items
                
                
                }
@@ -41,3 +43,34 @@ def products(request):
     products =Product.objects.all()
     context = {'products':products}
     return render(request,'products.html',context)
+
+def create(request):
+
+    if request.POST:
+        frm = OrderForm(request.POST)
+        if frm.is_valid():
+            frm.save()
+        return redirect('/')
+    else:
+       
+        frm = OrderForm()
+    return render(request,'update_order.html',{'frm':frm}) 
+
+def remove(request,pk):
+    order = Orders.objects.get(id=pk)
+    order.delete()  
+    return redirect('/')
+
+
+def update(request,pk):
+    order = Orders.objects.get(id=pk)
+    if request.POST:
+        frm = OrderForm(request.POST,instance=order) #here update the particular instance not created
+        if frm.is_valid():
+            frm.save()
+        return redirect('/')
+    else:
+        
+        frm = OrderForm(instance=order)
+    return render(request,'update_order.html',{'frm':frm})
+

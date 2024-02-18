@@ -40,10 +40,17 @@
   </table>
 
 <!--Last 5 orders table -->
-  <div class="mt-20">
-    <h3>LAST 5 ORDERS</h3>
+  
+<div class="card w-50 ml-5">
+  <div class="card-body">
+    <h5 class="card-title">Create New Orders</h5>
+    
+    <a href="{% url 'create'%}" class="btn btn-primary">Create</a>
+  </div>
 </div>
-<div class="bg-primary w-70 ">Create Orders</div>
+<div class="mt-20">
+  <h3>LAST 5 ORDERS</h3>
+</div>
 <table class="table table-hover table table-striped w-60 h-50 table table-striped m-20">
     <thead>
       <tr>
@@ -63,8 +70,8 @@
         <td>{{i.product}}</td>
         <td>{{i.created_at}}</td>
         <td>{{i.status}}</td>
-        <td><button type="button" class="btn btn-primary"><a href"">Update</a></button></td>
-        <td><button type="button" class="btn btn-danger">Delete<a href=""></a></button></td>
+        <td><a href="{% url 'update' i.id %}"><button type="button" class="btn btn-primary">Update</button></a></td>
+        <td><a href="{% url 'remove' i.id %}"><button type="button" class="btn btn-danger">Remove</button></a></td>
        
       </tr>
       {% endfor %}

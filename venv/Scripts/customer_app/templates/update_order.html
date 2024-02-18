@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+    {%  csrf_token %}
+    <div class="card w-50 m-5">
+        <div class="card-body">
+          <h5 class="card-title">Update the changes</h5>
+          <p class="card-text">{{frm.as_p}}</p>
+          <input type="submit" class="btn btn-primary" value="Submit"/>
+        </div>
+      </div>
+    
+    
+    
+</form>
+
+{% endblock %}

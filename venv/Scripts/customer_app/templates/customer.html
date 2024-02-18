@@ -70,17 +70,19 @@
             </tr>
           </thead>
           <tbody>
+          
+            {% for i in items %}
             <tr>
           
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Mark</td>
-              <td>Otto</td>
+              <td>{{i.product}}</td>
+              <td>{{i.product.category}}</td>
+              <td>{{i.created_at}}</td>
+              <td>{{i.status}}</td>
+              <td><a href=""><button class="btn btn-primary" type="submit">Update</button></a></td>
+              <td><a href=""><button class="btn btn-danger" type="submit">Remove</button></a></td>
              
             </tr>
-            
+            {% endfor %}
             
           </tbody>
         </table>
