@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% if frm %}
+
 <form action="" method="post">
     {%  csrf_token %}
     <div class="card w-50 m-5">
@@ -16,4 +18,27 @@
     
 </form>
 
+{% endif %}
+
+{% if formset %}
+<form action="" method="post">
+  {%  csrf_token %}
+  <div class="card w-50 m-5">
+      <div class="card-body">
+        <h5 class="card-title">Add New Products</h5>
+        {{ formset.management_form }}
+        {% for forms in  formset %}
+        <p class="card-text">{{forms.as_p}}</p>
+        <hr>
+
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Submit"/>
+      </div>
+    </div>
+  
+  
+  
+</form>
+
+{% endif %}
 {% endblock %}

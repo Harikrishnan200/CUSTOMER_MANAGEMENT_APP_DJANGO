@@ -8,7 +8,7 @@
         <h5 class="card-title">Customer</h5>
         <hr>
         <a href="#" class="btn btn-outline-info btn-sm btn-block">Update Customer</a>
-        <a href="#" class="btn btn-outline-danger btn-sm btn-block">Delete Customer</a>
+        <a href="{% url 'createOrder' customer.id %}" class="btn btn-outline-info btn-sm btn-block">Place Order</a>
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@
               <td>{{i.product.category}}</td>
               <td>{{i.created_at}}</td>
               <td>{{i.status}}</td>
-              <td><a href=""><button class="btn btn-primary" type="submit">Update</button></a></td>
+              <td><a href=""><button class="btn btn-info" type="submit">Update</button></a></td>
               <td><a href=""><button class="btn btn-danger" type="submit">Remove</button></a></td>
              
             </tr>
